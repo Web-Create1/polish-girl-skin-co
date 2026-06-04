@@ -7,6 +7,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Sisterhood from "@/components/Sisterhood";
 import Lila from "@/components/Lila";
 import Future from "@/components/Future";
+import Testimonials from "@/components/Testimonials";
 import Connect from "@/components/Connect";
 import Footer from "@/components/Footer";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <Sisterhood />
         <Lila />
         <Future />
+        <Testimonials />
         <Connect />
       </main>
       <Footer />

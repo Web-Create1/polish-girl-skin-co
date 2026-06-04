@@ -37,7 +37,7 @@ export default function Future() {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f, i) => (
             <Reveal key={f.t} delay={i * 0.08}>
-              <div className="flex h-full flex-col rounded-3xl bg-cream/80 p-7 ring-1 ring-sage/25">
+              <div className="flex h-full flex-col rounded-3xl bg-cream/80 p-7 ring-1 ring-sage/25 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-24px_rgba(110,63,134,0.35)]">
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sage/15 text-sage">
                   <Leaf />
                 </span>

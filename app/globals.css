@@ -11,7 +11,7 @@
 @theme {
   /* 60% — dominant lights */
   --color-ivory: #fffafd;
-  --color-cream: #fbf2f7;
+  --color-cream: #fdf2f8;
   --color-sand: #f4e7f1;
   --color-mist: #efe6f6;
 
@@ -23,12 +23,13 @@
 
   /* 30% — secondary violets / structure */
   --color-orchid: #9a5fae;
+  --color-grape: #8b5cf6;
   --color-violet: #6e3f86;
   --color-plum: #5b2d54;
   --color-plumdeep: #2a1430;
 
   /* legacy aliases kept on-palette so older classes recolor automatically */
-  --color-clay: #d4458a; /* → accent magenta (eyebrows, hovers) */
+  --color-clay: #ec4899; /* → accent pink (eyebrows, hovers) — UI/UX Pro Max primary */
   --color-gold: #9a5fae; /* → orchid (accents on dark + light) */
   --color-goldlight: #d9b8ec; /* → soft lilac highlight */
   --color-sage: #a072b8; /* → muted orchid */
@@ -91,6 +92,19 @@ body {
 ::selection {
   background: var(--color-petal);
   color: var(--color-plumdeep);
+}
+
+/* interaction affordances + a11y (UI/UX Pro Max pre-delivery checklist) */
+button:not(:disabled),
+[role="button"],
+a[href],
+label[for] {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-clay);
+  outline-offset: 3px;
 }
 
 h1, h2, h3, h4 {
