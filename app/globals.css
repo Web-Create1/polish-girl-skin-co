@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Polish Girl Skin Co. — design system
+   Warm, healing, editorial. Cream + blush + clay + plum + gold + sage.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-ivory: #fffcf9;
+  --color-cream: #faf4ee;
+  --color-sand: #f1e7db;
+  --color-blush: #efc9c2;
+  --color-petal: #e7b1a8;
+  --color-rose: #d98c82;
+  --color-clay: #b86f63;
+  --color-plum: #5e3a49;
+  --color-plumdeep: #3a2330;
+  --color-espresso: #2c221d;
+  --color-gold: #c2a063;
+  --color-goldlight: #ddc189;
+  --color-sage: #9dae8e;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-floaty: floaty 7s ease-in-out infinite;
+  --animate-floaty-slow: floaty 11s ease-in-out infinite;
+  --animate-shimmer: shimmer 7s linear infinite;
+  --animate-cue: cue 2.4s ease-in-out infinite;
+  --animate-glow: glow 6s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-22px) translateX(8px); }
+}
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+@keyframes cue {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(10px); opacity: 1; }
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---- base ---------------------------------------------------------------- */
+html {
+  color-scheme: light;
+  scroll-behavior: auto; /* Lenis owns smoothness */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-espresso);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-petal);
+  color: var(--color-plumdeep);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* subtle film grain for an analog, luxe finish */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- helpers ------------------------------------------------------------- */
+.font-display { font-family: var(--font-fraunces), Georgia, serif; }
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.gold-text {
+  background: linear-gradient(
+    100deg,
+    var(--color-gold) 0%,
+    var(--color-goldlight) 25%,
+    #fff3d4 45%,
+    var(--color-goldlight) 65%,
+    var(--color-gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+
+.hairline { height: 1px; background: linear-gradient(90deg, transparent, currentColor, transparent); }
+
+/* ---- Lenis --------------------------------------------------------------- */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
