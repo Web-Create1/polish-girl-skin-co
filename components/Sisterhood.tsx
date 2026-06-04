@@ -11,7 +11,7 @@ export default function Sisterhood() {
   return (
     <section
       id="sisterhood"
-      className="relative overflow-hidden bg-[linear-gradient(160deg,#f7ddd6_0%,#efc9c2_42%,#e1a59b_100%)] py-28 sm:py-36"
+      className="relative overflow-hidden bg-[linear-gradient(160deg,#fbe3f0_0%,#f0c9e6_44%,#d49bd0_100%)] py-28 sm:py-36"
     >
       {/* ambient floating orbs */}
       <div className="pointer-events-none absolute -left-16 top-20 h-64 w-64 animate-floaty rounded-full bg-cream/40 blur-3xl" />
@@ -53,7 +53,7 @@ export default function Sisterhood() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="rounded-[2rem] bg-cream/70 p-7 shadow-[0_40px_80px_-40px_rgba(58,35,48,0.5)] ring-1 ring-cream/60 backdrop-blur-md sm:p-9">
+          <div className="rounded-[2rem] bg-cream/70 p-7 shadow-[0_40px_80px_-40px_rgba(42,20,48,0.5)] ring-1 ring-cream/60 backdrop-blur-md sm:p-9">
             <p className="font-display text-xl text-plumdeep">
               What a gathering feels like
             </p>

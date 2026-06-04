@@ -2,22 +2,39 @@
 
 /* ---------------------------------------------------------------------------
    Polish Girl Skin Co. — design system
-   Warm, healing, editorial. Cream + blush + clay + plum + gold + sage.
+   Pink · purple · violet, on a soft healing base.
+   60 / 30 / 10 :
+     60%  dominant  → soft pink-violet lights (cream / sand / mist)
+     30%  secondary → plum & violet structure (plum / plumdeep / orchid)
+     10%  accent    → rose-magenta pop (magenta / rose), used sparingly
 --------------------------------------------------------------------------- */
 @theme {
-  --color-ivory: #fffcf9;
-  --color-cream: #faf4ee;
-  --color-sand: #f1e7db;
-  --color-blush: #efc9c2;
-  --color-petal: #e7b1a8;
-  --color-rose: #d98c82;
-  --color-clay: #b86f63;
-  --color-plum: #5e3a49;
-  --color-plumdeep: #3a2330;
-  --color-espresso: #2c221d;
-  --color-gold: #c2a063;
-  --color-goldlight: #ddc189;
-  --color-sage: #9dae8e;
+  /* 60% — dominant lights */
+  --color-ivory: #fffafd;
+  --color-cream: #fbf2f7;
+  --color-sand: #f4e7f1;
+  --color-mist: #efe6f6;
+
+  /* 10% — accent + soft pinks */
+  --color-blush: #f7d8e7;
+  --color-petal: #f0bcd6;
+  --color-rose: #e07aa6;
+  --color-magenta: #d4458a;
+
+  /* 30% — secondary violets / structure */
+  --color-orchid: #9a5fae;
+  --color-violet: #6e3f86;
+  --color-plum: #5b2d54;
+  --color-plumdeep: #2a1430;
+
+  /* legacy aliases kept on-palette so older classes recolor automatically */
+  --color-clay: #d4458a; /* → accent magenta (eyebrows, hovers) */
+  --color-gold: #9a5fae; /* → orchid (accents on dark + light) */
+  --color-goldlight: #d9b8ec; /* → soft lilac highlight */
+  --color-sage: #a072b8; /* → muted orchid */
+
+  /* text */
+  --color-espresso: #2f2233;
 
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
@@ -28,6 +45,7 @@
   --animate-shimmer: shimmer 7s linear infinite;
   --animate-cue: cue 2.4s ease-in-out infinite;
   --animate-glow: glow 6s ease-in-out infinite;
+  --animate-kenburns: kenburns 26s ease-in-out infinite alternate;
 }
 
 @keyframes marquee {
@@ -47,7 +65,11 @@
 }
 @keyframes glow {
   0%, 100% { opacity: 0.45; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.08); }
+  50% { opacity: 0.85; transform: scale(1.08); }
+}
+@keyframes kenburns {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to { transform: scale(1.18) translate3d(-1.5%, -2%, 0); }
 }
 
 /* ---- base ---------------------------------------------------------------- */
@@ -84,7 +106,7 @@ body::after {
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -102,14 +124,15 @@ body::after {
   font-weight: 500;
 }
 
+/* shimmering pink→lilac accent text (legacy name) */
 .gold-text {
   background: linear-gradient(
     100deg,
-    var(--color-gold) 0%,
-    var(--color-goldlight) 25%,
-    #fff3d4 45%,
-    var(--color-goldlight) 65%,
-    var(--color-gold) 100%
+    #e07aa6 0%,
+    #f3c6dd 24%,
+    #ffffff 44%,
+    #c9a3e6 66%,
+    #d4458a 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

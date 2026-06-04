@@ -16,7 +16,7 @@ const Leaf = () => (
 
 export default function Future() {
   return (
-    <section className="relative bg-[radial-gradient(120%_120%_at_85%_0%,#eef1e7_0%,#faf4ee_55%)] py-28 sm:py-36">
+    <section className="relative bg-[radial-gradient(120%_120%_at_85%_0%,#efe6f6_0%,#fbf2f7_55%)] py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>

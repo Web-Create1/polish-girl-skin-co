@@ -21,10 +21,10 @@ export default function Story() {
         <div className="relative order-2 lg:order-1">
           <motion.div
             style={{ y: orbY }}
-            className="absolute -left-6 -top-10 h-40 w-40 rounded-full bg-gold/25 blur-3xl"
+            className="absolute -left-6 -top-10 h-40 w-40 rounded-full bg-petal/45 blur-3xl"
           />
           <motion.div style={{ y: portraitY }} className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] bg-[linear-gradient(150deg,#efc9c2_0%,#d98c82_45%,#5e3a49_100%)] shadow-[0_40px_80px_-30px_rgba(94,58,73,0.55)] ring-1 ring-plum/10">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.25rem] bg-[linear-gradient(150deg,#f3c6dd_0%,#c75fa0_44%,#3a1c3a_100%)] shadow-[0_40px_80px_-30px_rgba(42,20,48,0.5)] ring-1 ring-plum/10">
               {/* subtle monogram + caption — drop a portrait of Nicole in here */}
               <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[11rem] leading-none text-cream/15 sm:text-[14rem]">
                 PG

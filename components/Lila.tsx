@@ -7,7 +7,7 @@ export default function Lila() {
       className="relative overflow-hidden bg-plumdeep py-32 text-cream sm:py-40"
     >
       {/* soft sanctuary glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 animate-glow rounded-full bg-[radial-gradient(circle,rgba(194,160,99,0.32)_0%,rgba(217,140,130,0.12)_45%,transparent_70%)]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 animate-glow rounded-full bg-[radial-gradient(circle,rgba(154,95,174,0.36)_0%,rgba(212,69,138,0.16)_45%,transparent_70%)]" />
 
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <Reveal>
