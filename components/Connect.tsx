@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import TiltCard from "@/components/TiltCard";
+import GlowCard from "@/components/ui/GlowCard";
 
 const EMAIL = "nmka@uoregon.edu";
 const IG = "https://instagram.com/polishgirlskinco";
@@ -11,33 +11,33 @@ const packages = [
     features: [
       "Consult on one or two key concerns",
       "Personalized product picks",
-      "Clear how-to-use guidance",
+      "Clear guidance on how to use it",
     ],
     featured: false,
-    subject: "The%20Refresh%20—%20Skincare%20Consultation",
+    subject: "The%20Refresh%3A%20Skincare%20Consultation",
   },
   {
     name: "The Full Routine",
-    tagline: "Your complete AM + PM",
+    tagline: "Your complete AM and PM",
     features: [
       "Full routine built around your skin",
-      "Matched to lifestyle & budget",
+      "Matched to lifestyle and budget",
       "Education behind every step",
-      "Barrier-first, safe ingredients",
+      "Barrier first, safe ingredients",
     ],
     featured: true,
-    subject: "The%20Full%20Routine%20—%20Skincare%20Consultation",
+    subject: "The%20Full%20Routine%3A%20Skincare%20Consultation",
   },
   {
     name: "The Concierge",
     tagline: "Ongoing, evolving care",
     features: [
       "Everything in The Full Routine",
-      "Check-ins as your skin changes",
+      "We revisit as your skin changes",
       "Priority product guidance",
     ],
     featured: false,
-    subject: "The%20Concierge%20—%20Ongoing%20Skincare%20Support",
+    subject: "The%20Concierge%3A%20Ongoing%20Skincare%20Support",
   },
 ];
 
@@ -46,12 +46,12 @@ const ways = [
   "Join our monthly subscriber community",
   "Follow along on Instagram @polishgirlskinco",
   "Reach out about how Polish Girl funds L.I.L.A. Safe Haven",
-  "Get involved — invest, fundraise, or spread the word",
+  "Get involved: invest, fundraise, or spread the word",
 ];
 
 export default function Connect() {
   return (
-    <section id="connect" className="relative bg-cream py-28 sm:py-36">
+    <section id="connect" className="relative overflow-hidden bg-cream py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
@@ -72,11 +72,14 @@ export default function Connect() {
         <div className="mt-16 grid items-stretch gap-6 lg:grid-cols-3">
           {packages.map((p, i) => (
             <Reveal key={p.name} delay={i * 0.08} className="h-full">
-              <TiltCard className="h-full">
+              <GlowCard
+                className="h-full rounded-[1.75rem]"
+                glow={p.featured ? "rgba(255,255,255,0.22)" : "rgba(219,47,134,0.2)"}
+              >
                 <div
-                  className={`flex h-full flex-col rounded-[1.75rem] p-8 ring-1 transition-shadow duration-300 ${
+                  className={`shine-border flex h-full flex-col rounded-[1.75rem] p-8 ring-1 transition-shadow duration-300 ${
                     p.featured
-                      ? "bg-plum text-cream ring-plum shadow-[0_40px_80px_-30px_rgba(94,58,73,0.6)]"
+                      ? "bg-[linear-gradient(160deg,#5b2d54,#3a1c3a)] text-cream ring-plum shadow-[0_40px_80px_-30px_rgba(94,58,73,0.7)]"
                       : "bg-ivory text-espresso ring-plum/10 hover:shadow-[0_30px_60px_-30px_rgba(94,58,73,0.4)]"
                   }`}
                 >
@@ -136,7 +139,7 @@ export default function Connect() {
                     <span aria-hidden>→</span>
                   </a>
                 </div>
-              </TiltCard>
+              </GlowCard>
             </Reveal>
           ))}
         </div>
@@ -159,7 +162,8 @@ export default function Connect() {
             </Reveal>
           </div>
 
-          <div className="flex flex-col justify-center bg-plumdeep p-9 text-cream sm:p-11">
+          <div className="relative flex flex-col justify-center overflow-hidden bg-plumdeep p-9 text-cream sm:p-11">
+            <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 animate-glow rounded-full bg-grape/25 blur-3xl" />
             <Reveal>
               <p className="eyebrow text-goldlight">Let’s begin</p>
               <p className="mt-4 font-display text-3xl leading-tight text-cream">
@@ -171,7 +175,7 @@ export default function Connect() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href={`mailto:${EMAIL}?subject=Polish%20Girl%20Skin%20Co.%20—%20Hello`}
+                  href={`mailto:${EMAIL}?subject=Polish%20Girl%20Skin%20Co.%20Hello`}
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-cream px-7 py-3.5 text-sm font-medium text-plum transition-colors hover:bg-goldlight"
                 >
                   Email Nicole

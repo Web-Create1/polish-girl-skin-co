@@ -24,7 +24,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-5 max-w-sm text-pretty leading-relaxed text-cream/65">
-              Your personal skincare concierge, your sisterhood, and your healing —
+              Your personal skincare concierge, your sisterhood, and your healing,
               with a portion of every sale building L.I.L.A. Safe Haven.
             </p>
           </div>
@@ -52,7 +52,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href={IG} target="_blank" rel="noopener noreferrer" className="text-cream/70 transition-colors hover:text-cream">
-                  Instagram — @polishgirlskinco
+                  Instagram @polishgirlskinco
                 </a>
               </li>
               <li className="text-cream/55">Nicole Kaminski, Founder</li>

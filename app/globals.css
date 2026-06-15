@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Polish Girl Skin Co. — design system
+   Polish Girl Skin Co. design system
    Pink · purple · violet, on a soft healing base.
    60 / 30 / 10 :
      60%  dominant  → soft pink-violet lights (cream / sand / mist)
@@ -9,30 +9,30 @@
      10%  accent    → rose-magenta pop (magenta / rose), used sparingly
 --------------------------------------------------------------------------- */
 @theme {
-  /* 60% — dominant lights */
+  /* 60% dominant lights */
   --color-ivory: #fffafd;
   --color-cream: #fdf2f8;
-  --color-sand: #f4e7f1;
+  --color-sand: #f6e6f1;
   --color-mist: #efe6f6;
 
-  /* 10% — accent + soft pinks */
-  --color-blush: #f7d8e7;
-  --color-petal: #f0bcd6;
-  --color-rose: #e07aa6;
-  --color-magenta: #d4458a;
+  /* 10% accent + soft pinks (leaned more vibrant) */
+  --color-blush: #f9d4e8;
+  --color-petal: #f3b4d4;
+  --color-rose: #e96aa3;
+  --color-magenta: #db2f86;
 
-  /* 30% — secondary violets / structure */
-  --color-orchid: #9a5fae;
+  /* 30% secondary violets / structure */
+  --color-orchid: #a455c2;
   --color-grape: #8b5cf6;
   --color-violet: #6e3f86;
   --color-plum: #5b2d54;
   --color-plumdeep: #2a1430;
 
   /* legacy aliases kept on-palette so older classes recolor automatically */
-  --color-clay: #ec4899; /* → accent pink (eyebrows, hovers) — UI/UX Pro Max primary */
-  --color-gold: #9a5fae; /* → orchid (accents on dark + light) */
-  --color-goldlight: #d9b8ec; /* → soft lilac highlight */
-  --color-sage: #a072b8; /* → muted orchid */
+  --color-clay: #ec3f93; /* accent pink (eyebrows, hovers) */
+  --color-gold: #a455c2; /* orchid (accents on dark + light) */
+  --color-goldlight: #ddb6f0; /* soft lilac highlight */
+  --color-sage: #ab63cc; /* muted orchid */
 
   /* text */
   --color-espresso: #2f2233;
@@ -47,6 +47,9 @@
   --animate-cue: cue 2.4s ease-in-out infinite;
   --animate-glow: glow 6s ease-in-out infinite;
   --animate-kenburns: kenburns 26s ease-in-out infinite alternate;
+  --animate-aurora-spin: aurora-spin 24s linear infinite;
+  --animate-aurora-text: shimmer 6s linear infinite;
+  --animate-pulse-ring: pulse-ring 3s ease-out infinite;
 }
 
 @keyframes marquee {
@@ -71,6 +74,14 @@
 @keyframes kenburns {
   from { transform: scale(1.04) translate3d(0, 0, 0); }
   to { transform: scale(1.18) translate3d(-1.5%, -2%, 0); }
+}
+@keyframes aurora-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
 }
 
 /* ---- base ---------------------------------------------------------------- */
@@ -138,22 +149,53 @@ body::after {
   font-weight: 500;
 }
 
-/* shimmering pink→lilac accent text (legacy name) */
-.gold-text {
+/* shimmering pink to lilac accent text (legacy name) */
+.gold-text,
+.aurora-text {
   background: linear-gradient(
     100deg,
     #e07aa6 0%,
-    #f3c6dd 24%,
-    #ffffff 44%,
-    #c9a3e6 66%,
-    #d4458a 100%
+    #f3c6dd 22%,
+    #ffffff 40%,
+    #c9a3e6 62%,
+    #d4458a 82%,
+    #8b5cf6 100%
   );
-  background-size: 200% auto;
+  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
   animation: shimmer 7s linear infinite;
 }
+
+/* frosted glass surface used by dynamic cards */
+.glass {
+  background: rgba(255, 250, 253, 0.62);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* animated gradient border (21st.dev "shine border" pattern) */
+.shine-border {
+  position: relative;
+}
+.shine-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(130deg, #d4458a, #8b5cf6, #e07aa6, #d4458a);
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: shimmer 6s linear infinite;
+}
+.shine-border:hover::before { opacity: 1; }
 
 .hairline { height: 1px; background: linear-gradient(90deg, transparent, currentColor, transparent); }
 

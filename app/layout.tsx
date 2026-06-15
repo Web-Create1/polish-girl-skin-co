@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Polish Girl Skin Co. — Your Personal Skincare Concierge",
+  title: "Polish Girl Skin Co. · Your Personal Skincare Concierge",
   description:
-    "Personalized, judgment-free skincare curated for your skin, your life, and your budget — plus a sisterhood of women healing together. Founded by Nicole Kaminski.",
+    "Personalized, judgment free skincare curated for your skin, your life, and your budget, plus a sisterhood of women healing together. Founded by Nicole Kaminski.",
   keywords: [
     "skincare concierge",
     "personalized skincare",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Nicole Kaminski" }],
   openGraph: {
-    title: "Polish Girl Skin Co. — Your Personal Skincare Concierge",
+    title: "Polish Girl Skin Co. · Your Personal Skincare Concierge",
     description:
-      "Your personal skincare concierge. Your sisterhood. Your healing. Personalized, judgment-free skincare curated just for you.",
+      "Your personal skincare concierge. Your sisterhood. Your healing. Personalized, judgment free skincare curated just for you.",
     type: "website",
     siteName: "Polish Girl Skin Co.",
   },

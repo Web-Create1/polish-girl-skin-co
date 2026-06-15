@@ -1,3 +1,4 @@
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -14,6 +15,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <div id="top">
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />

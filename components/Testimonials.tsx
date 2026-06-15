@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import CardStack3D, { type StackCard } from "@/components/ui/CardStack3D";
 
 const Star = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 text-clay" aria-hidden>
@@ -9,7 +10,7 @@ const Star = () => (
 const testimonials = [
   {
     quote:
-      "I finally understand my skin. Nicole took the guesswork out and built me a routine that actually works — no overwhelm, no judgment.",
+      "I finally understand my skin. Nicole took the guesswork out and built me a routine that actually works. No overwhelm, no judgment.",
     name: "Maya R.",
     role: "Concierge client",
     initial: "M",
@@ -25,13 +26,40 @@ const testimonials = [
   },
   {
     quote:
-      "I came for skincare and found a sisterhood. The monthly gatherings genuinely lift me up — it's become my favorite night.",
+      "I came for skincare and found a sisterhood. The monthly gatherings genuinely lift me up. It has become my favorite night.",
     name: "Priya K.",
     role: "Monthly member",
     initial: "P",
     grad: "from-grape to-plum",
   },
 ];
+
+const cards: StackCard[] = testimonials.map((t) => ({
+  id: t.name,
+  content: (
+    <figure className="flex h-full flex-col rounded-[1.75rem] bg-ivory p-9 text-left shadow-[0_34px_80px_-34px_rgba(94,45,84,0.45)] ring-1 ring-plum/10 sm:p-11">
+      <div className="flex gap-1" aria-label="Rated 5 out of 5">
+        {Array.from({ length: 5 }).map((_, s) => (
+          <Star key={s} />
+        ))}
+      </div>
+      <blockquote className="mt-6 flex-1 text-pretty font-display text-xl leading-relaxed text-plumdeep sm:text-2xl">
+        “{t.quote}”
+      </blockquote>
+      <figcaption className="mt-8 flex items-center gap-3">
+        <span
+          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${t.grad} font-display text-lg text-white`}
+        >
+          {t.initial}
+        </span>
+        <span>
+          <span className="block font-medium text-plumdeep">{t.name}</span>
+          <span className="block text-sm text-clay">{t.role}</span>
+        </span>
+      </figcaption>
+    </figure>
+  ),
+}));
 
 export default function Testimonials() {
   return (
@@ -40,7 +68,7 @@ export default function Testimonials() {
       <div className="pointer-events-none absolute -right-20 top-10 h-72 w-72 rounded-full bg-grape/10 blur-3xl" />
       <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-rose/10 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative mx-auto max-w-3xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <p className="eyebrow text-clay">Kind Words</p>
@@ -48,35 +76,16 @@ export default function Testimonials() {
               Women are feeling the difference.
             </h2>
           </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-4 text-sm text-espresso/55">
+              Drag, tap a dot, or let it drift.
+            </p>
+          </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.08} className="h-full">
-              <figure className="flex h-full flex-col rounded-[1.75rem] bg-ivory p-8 shadow-[0_24px_60px_-30px_rgba(94,45,84,0.28)] ring-1 ring-plum/10 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_34px_70px_-30px_rgba(139,92,246,0.4)]">
-                <div className="flex gap-1" aria-label="Rated 5 out of 5">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <Star key={s} />
-                  ))}
-                </div>
-                <blockquote className="mt-5 flex-1 text-pretty leading-relaxed text-espresso/80">
-                  “{t.quote}”
-                </blockquote>
-                <figcaption className="mt-7 flex items-center gap-3">
-                  <span
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${t.grad} font-display text-lg text-white`}
-                  >
-                    {t.initial}
-                  </span>
-                  <span>
-                    <span className="block font-medium text-plumdeep">{t.name}</span>
-                    <span className="block text-sm text-clay">{t.role}</span>
-                  </span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={0.1}>
+          <CardStack3D cards={cards} className="mt-14" />
+        </Reveal>
       </div>
     </section>
   );
