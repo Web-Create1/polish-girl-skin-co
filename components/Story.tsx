@@ -32,10 +32,13 @@ export default function Story() {
           <motion.div style={{ y: portraitY }} className="relative">
             <GlowCard tilt={9} glow="rgba(255,255,255,0.28)" className="rounded-[2.25rem]">
               <div className="shine-border relative aspect-[4/5] overflow-hidden rounded-[2.25rem] bg-[linear-gradient(150deg,#f9d4e8_0%,#db2f86_46%,#3a1c3a_100%)] shadow-[0_40px_90px_-30px_rgba(42,20,48,0.6)] ring-1 ring-plum/10">
-                {/* subtle monogram + caption. Drop a portrait of Nicole in here. */}
-                <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[11rem] leading-none text-cream/15 sm:text-[14rem]">
-                  PG
-                </span>
+                <img
+                  src="/nicole.jpg"
+                  alt="Nicole Kaminski, founder of Polish Girl Skin Co."
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+                {/* readability scrim behind the caption */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-plumdeep/45 to-transparent" />
                 <div className="absolute inset-x-5 bottom-5 rounded-2xl bg-cream/85 px-5 py-4 backdrop-blur-sm">
                   <p className="font-display text-xl text-plumdeep">Nicole Kaminski</p>
                   <p className="eyebrow mt-1 text-clay">Founder · Skincare Concierge</p>
