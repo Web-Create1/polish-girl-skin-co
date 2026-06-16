@@ -155,6 +155,18 @@ export default function Connect() {
           ))}
         </div>
 
+        <Reveal delay={0.1}>
+          <p className="mt-10 text-center text-[1.02rem] text-espresso/75">
+            Not sure which to choose?{" "}
+            <a
+              href="/intake"
+              className="font-medium text-plum underline decoration-clay/50 underline-offset-4 transition-colors hover:text-clay"
+            >
+              Start with the skincare intake form
+            </a>
+          </p>
+        </Reveal>
+
         {/* ways to connect + contact */}
         <div className="mt-10 grid gap-6 overflow-hidden rounded-[2rem] bg-sand ring-1 ring-plum/10 lg:grid-cols-2">
           <div className="p-9 sm:p-11">
