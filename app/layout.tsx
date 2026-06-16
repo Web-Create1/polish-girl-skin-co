@@ -16,6 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://polish-girl-skin-co.vercel.app"),
   title: "Polish Girl Skin Co. · Your Personal Skincare Concierge",
   description:
     "Personalized, judgment free skincare curated for your skin, your life, and your budget, plus a sisterhood of women healing together. Founded by Nicole Kaminski.",

@@ -1,5 +1,4 @@
-const EMAIL = "nmka@uoregon.edu";
-const IG = "https://instagram.com/polishgirlskinco";
+import { CALENDLY, EMAIL, IG, IG_HANDLE } from "@/lib/site";
 
 const explore = [
   { href: "#story", label: "Our Story" },
@@ -15,10 +14,14 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cream text-[0.72rem] font-medium text-plum">
-                PG
-              </span>
+            <div className="flex items-center gap-3">
+              <img
+                src="/logo-mark.png"
+                alt="Polish Girl Skin Co."
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full bg-cream/95 ring-1 ring-cream/20"
+              />
               <span className="font-display text-lg text-cream">
                 Polish Girl <span className="text-goldlight">Skin Co.</span>
               </span>
@@ -46,13 +49,23 @@ export default function Footer() {
             <p className="eyebrow text-goldlight">Connect</p>
             <ul className="mt-5 space-y-3">
               <li>
+                <a
+                  href={CALENDLY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cream/70 transition-colors hover:text-cream"
+                >
+                  Book a consultation
+                </a>
+              </li>
+              <li>
                 <a href={`mailto:${EMAIL}`} className="text-cream/70 transition-colors hover:text-cream">
                   {EMAIL}
                 </a>
               </li>
               <li>
                 <a href={IG} target="_blank" rel="noopener noreferrer" className="text-cream/70 transition-colors hover:text-cream">
-                  Instagram @polishgirlskinco
+                  Instagram {IG_HANDLE}
                 </a>
               </li>
               <li className="text-cream/55">Nicole Kaminski, Founder</li>

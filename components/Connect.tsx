@@ -1,50 +1,58 @@
 import Reveal from "@/components/Reveal";
 import GlowCard from "@/components/ui/GlowCard";
-
-const EMAIL = "nmka@uoregon.edu";
-const IG = "https://instagram.com/polishgirlskinco";
+import { CALENDLY, EMAIL, IG, IG_HANDLE } from "@/lib/site";
 
 const packages = [
   {
-    name: "The Refresh",
-    tagline: "A focused starting point",
+    name: "The Polish Girl Starter",
+    tagline: "For the skincare minimalist ready to glow",
+    price: "$99 or $149",
+    cadence: "one time · 30 or 45 min",
     features: [
-      "Consult on one or two key concerns",
-      "Personalized product picks",
-      "Clear guidance on how to use it",
+      "30 or 45 min 1:1 session with Nicole",
+      "Full review of your current products: keep, toss, or swap",
+      "Your personalized clean slate product edit",
     ],
     featured: false,
-    subject: "The%20Refresh%3A%20Skincare%20Consultation",
+    cta: "Book this package",
   },
   {
-    name: "The Full Routine",
-    tagline: "Your complete AM and PM",
+    name: "The Polish Girl Ritual",
+    tagline: "For the skincare enthusiast ready to level up",
+    price: "$250 or $300",
+    cadence: "one time · 60 min",
     features: [
-      "Full routine built around your skin",
-      "Matched to lifestyle and budget",
-      "Education behind every step",
-      "Barrier first, safe ingredients",
+      "60 min 1:1 Zoom session with Nicole",
+      "Personalized skincare bibliography: a complete product roadmap from morning to night",
+      "Access to our Skin Lovers Community (via Slack)",
+      "3 follow up questions answered after your session",
     ],
     featured: true,
-    subject: "The%20Full%20Routine%3A%20Skincare%20Consultation",
+    cta: "Book this package",
   },
   {
-    name: "The Concierge",
-    tagline: "Ongoing, evolving care",
+    name: "The Polish Girl Inner Circle",
+    tagline: "For the woman ready to fully invest in her skin and herself",
+    price: "$500 or $600",
+    cadence: "per month membership",
     features: [
-      "Everything in The Full Routine",
-      "We revisit as your skin changes",
-      "Priority product guidance",
+      "2 x 60 min Zoom sessions per month with Nicole",
+      "Complete in depth skincare bibliography: all day and night products curated for your skin, plus self love rituals",
+      "Monthly product swap and shop: 3 new options when something stops working",
+      "Weekly skincare questions answered by Nicole personally",
+      "Monthly subscriber Zoom facial nights: drinks, facials, and sisterhood",
+      "Access to our Skin Lovers Community (via Slack)",
+      "Priority access to dermatologist connections at reduced rates, as we grow",
     ],
     featured: false,
-    subject: "The%20Concierge%3A%20Ongoing%20Skincare%20Support",
+    cta: "Join the Inner Circle",
   },
 ];
 
 const ways = [
   "Book the personalized consultation package that fits you",
-  "Join our monthly subscriber community",
-  "Follow along on Instagram @polishgirlskinco",
+  "Join the Inner Circle monthly membership",
+  `Follow along on Instagram ${IG_HANDLE}`,
   "Reach out about how Polish Girl funds L.I.L.A. Safe Haven",
   "Get involved: invest, fundraise, or spread the word",
 ];
@@ -120,22 +128,25 @@ export default function Connect() {
                   </ul>
 
                   <div className="mt-8 flex-1" />
-                  <div
-                    className={`mb-5 text-sm ${
-                      p.featured ? "text-cream/60" : "text-espresso/50"
-                    }`}
-                  >
-                    Pricing by inquiry
+                  <div className={`mb-5 border-t pt-5 ${p.featured ? "border-cream/15" : "border-plum/10"}`}>
+                    <p className={`font-display text-3xl ${p.featured ? "text-cream" : "text-plumdeep"}`}>
+                      {p.price}
+                    </p>
+                    <p className={`mt-1 text-xs uppercase tracking-wide ${p.featured ? "text-cream/55" : "text-espresso/45"}`}>
+                      {p.cadence}
+                    </p>
                   </div>
                   <a
-                    href={`mailto:${EMAIL}?subject=${p.subject}`}
+                    href={CALENDLY}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-colors ${
                       p.featured
                         ? "bg-cream text-plum hover:bg-goldlight"
                         : "bg-plum text-cream hover:bg-clay"
                     }`}
                   >
-                    Book {p.name}
+                    {p.cta}
                     <span aria-hidden>→</span>
                   </a>
                 </div>
@@ -173,10 +184,19 @@ export default function Connect() {
                 Reach out and Nicole will personally help you find the right place
                 to start.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col flex-wrap gap-3 sm:flex-row">
+                <a
+                  href={CALENDLY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-cream px-7 py-3.5 text-sm font-medium text-plum transition-colors hover:bg-goldlight"
+                >
+                  Book on Calendly
+                  <span aria-hidden>→</span>
+                </a>
                 <a
                   href={`mailto:${EMAIL}?subject=Polish%20Girl%20Skin%20Co.%20Hello`}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-cream px-7 py-3.5 text-sm font-medium text-plum transition-colors hover:bg-goldlight"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-cream/30 px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
                 >
                   Email Nicole
                 </a>

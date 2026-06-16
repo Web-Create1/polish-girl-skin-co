@@ -59,6 +59,17 @@ export default function Hero() {
         style={{ y: textY, opacity: textOpacity }}
         className="relative z-10 mx-auto max-w-5xl px-6 text-center text-cream"
       >
+        <motion.img
+          src="/logo-mark.png"
+          alt="Polish Girl Skin Co."
+          width={88}
+          height={88}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="mx-auto mb-6 h-16 w-16 rounded-full ring-1 ring-cream/40 shadow-[0_18px_50px_-12px_rgba(20,8,24,0.6)] sm:h-[5.5rem] sm:w-[5.5rem]"
+        />
+
         <motion.p
           variants={fadeUp}
           initial="hidden"

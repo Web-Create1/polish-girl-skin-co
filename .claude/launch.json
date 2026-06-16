@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "polish-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start", "--", "-p", "3100"],
+      "port": 3100
+    },
+    {
       "name": "polish-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],

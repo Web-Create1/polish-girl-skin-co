@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { CALENDLY } from "@/lib/site";
 
 const links = [
   { href: "#story", label: "Story" },
@@ -32,9 +33,13 @@ export default function Nav() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#top" className="group flex items-center gap-2.5" aria-label="Polish Girl Skin Co. home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-plum text-[0.72rem] font-medium tracking-tight text-cream transition-colors group-hover:bg-clay">
-            PG
-          </span>
+          <img
+            src="/logo-mark.png"
+            alt="Polish Girl Skin Co."
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full ring-1 ring-plum/15 transition-transform duration-300 group-hover:scale-105"
+          />
           <span className="font-display text-lg leading-none text-plumdeep">
             Polish Girl{" "}
             <span className="text-clay">Skin Co.</span>
@@ -55,7 +60,9 @@ export default function Nav() {
         </ul>
 
         <a
-          href="#connect"
+          href={CALENDLY}
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden rounded-full bg-plum px-5 py-2.5 text-sm font-medium text-cream transition-colors hover:bg-clay md:inline-block"
         >
           Book a Consult
@@ -108,7 +115,9 @@ export default function Nav() {
               ))}
               <li>
                 <a
-                  href="#connect"
+                  href={CALENDLY}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setOpen(false)}
                   className="mt-4 block rounded-full bg-plum px-5 py-3 text-center text-sm font-medium text-cream"
                 >
