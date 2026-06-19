@@ -5,11 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CALENDLY } from "@/lib/site";
 
 const links = [
-  { href: "#story", label: "Story" },
-  { href: "#service", label: "The Service" },
-  { href: "#sisterhood", label: "Sisterhood" },
-  { href: "#lila", label: "L.I.L.A." },
-  { href: "#connect", label: "Connect" },
+  { href: "/#story", label: "Story" },
+  { href: "/#service", label: "The Service" },
+  { href: "/#sisterhood", label: "Sisterhood" },
+  { href: "/inner-circle", label: "Inner Circle" },
+  { href: "/#lila", label: "L.I.L.A." },
+  { href: "/#connect", label: "Connect" },
 ];
 
 export default function Nav() {

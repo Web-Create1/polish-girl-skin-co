@@ -43,13 +43,21 @@ export default function Sisterhood() {
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <a
-              href="mailto:nmka@uoregon.edu?subject=Joining%20the%20Polish%20Girl%20Sisterhood"
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-plum px-8 py-4 text-sm font-medium text-cream shadow-[0_16px_44px_-14px_rgba(58,35,48,0.6)] transition-colors hover:bg-plumdeep"
-            >
-              Join the Monthly Community
-              <span aria-hidden>→</span>
-            </a>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <a
+                href="/inner-circle"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-plum px-8 py-4 text-sm font-medium text-cream shadow-[0_16px_44px_-14px_rgba(58,35,48,0.6)] transition-colors hover:bg-plumdeep"
+              >
+                Explore the Inner Circle
+                <span aria-hidden>→</span>
+              </a>
+              <a
+                href="mailto:nmka@uoregon.edu?subject=Joining%20the%20Polish%20Girl%20Sisterhood"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-plum/25 px-8 py-4 text-sm font-medium text-plumdeep transition-colors hover:bg-cream/40"
+              >
+                Join the Monthly Community
+              </a>
+            </div>
           </Reveal>
         </div>
 

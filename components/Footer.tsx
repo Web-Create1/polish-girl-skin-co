@@ -1,11 +1,12 @@
 import { CALENDLY, EMAIL, IG, IG_HANDLE } from "@/lib/site";
 
 const explore = [
-  { href: "#story", label: "Our Story" },
-  { href: "#service", label: "The Service" },
-  { href: "#sisterhood", label: "Sisterhood" },
-  { href: "#lila", label: "L.I.L.A. Safe Haven" },
-  { href: "#connect", label: "Connect" },
+  { href: "/#story", label: "Our Story" },
+  { href: "/#service", label: "The Service" },
+  { href: "/#sisterhood", label: "Sisterhood" },
+  { href: "/inner-circle", label: "Inner Circle" },
+  { href: "/#lila", label: "L.I.L.A. Safe Haven" },
+  { href: "/#connect", label: "Connect" },
 ];
 
 export default function Footer() {
