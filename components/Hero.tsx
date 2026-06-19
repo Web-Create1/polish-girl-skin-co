@@ -24,14 +24,15 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-plumdeep">
-      {/* full-bleed lavender field + legibility overlay */}
+      {/* full-bleed lavender field + warm, light legibility overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url(/hero-lavender.jpg)" }}
       >
-        {/* overall darken + left-biased wash so the left-aligned copy stays legible */}
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(20,8,24,0.8)_0%,rgba(20,8,24,0.45)_45%,transparent_80%)]" />
+        {/* warm plum wash, left-biased so the copy stays legible without going dark */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(63,26,42,0.58)_0%,rgba(63,26,42,0.28)_44%,transparent_80%)]" />
+        {/* golden glow from the sunset side for a warm, inviting feel */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_left,rgba(255,183,122,0.2)_0%,transparent_55%)]" />
       </div>
       {/* smooth handoff into the cream page below */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent to-cream" />
