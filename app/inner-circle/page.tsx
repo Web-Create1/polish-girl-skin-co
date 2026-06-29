@@ -14,26 +14,82 @@ export const metadata: Metadata = {
 
 const benefits = [
   {
+    icon: "community",
     t: "Community",
-    d: "A place to connect, relax, and unwind. A place where you belong and are genuinely welcomed exactly as you are, where you find laughs, love, support, and encouragement for everything going on in your life. You are safe here. You are seen here. You matter.",
+    d: "A place to connect, relax, and unwind. A place where you belong and are genuinely welcomed exactly as you are, where you find laughs, love, support, and encouragement for everything going on in your life. You are safe here. You are seen here. You are valued, and you matter.",
+    featured: true,
   },
   {
+    icon: "connection",
     t: "Connection",
     d: "Professional connections that change lives. The kind of relationships that open doors you did not know existed and propel you toward the life you are creating.",
   },
   {
+    icon: "friendship",
     t: "Friendships",
     d: "The world can be lonely and isolating. Here you find the sister you have been longing for, even if the two of you are oceans apart.",
   },
   {
+    icon: "fun",
     t: "Fun",
     d: "Something we all need more of. Monthly Zoom facial nights with your favorite drink, real laughter, and conversation that fills you back up.",
   },
   {
+    icon: "opportunity",
     t: "Opportunities",
-    d: "Room to grow, to be mentored and to mentor, to pay it forward, and one day to help build L.I.L.A. Safe Haven alongside us.",
+    d: "Room to grow, to be mentored and to mentor, and to pay it forward. The Inner Circle is your doorway to join L.I.L.A. Safe Haven and one day work alongside us at Polish Girl.",
   },
 ];
+
+const benefitIcons: Record<string, React.ReactNode> = {
+  community: (
+    <>
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </>
+  ),
+  connection: (
+    <>
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+    </>
+  ),
+  friendship: (
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z" />
+  ),
+  fun: (
+    <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z" />
+  ),
+  opportunity: (
+    <>
+      <circle cx="7.5" cy="15.5" r="5.5" />
+      <path d="m21 2-9.6 9.6" />
+      <path d="m15.5 7.5 3 3L22 7l-3-3z" />
+    </>
+  ),
+};
+
+function BenefitIcon({ name }: { name: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-6 w-6"
+      aria-hidden
+    >
+      {benefitIcons[name]}
+    </svg>
+  );
+}
 
 const moments = [
   { t: "Grab your favorite drink", d: "Coffee, tea, or a glass of wine. Come as you are." },
@@ -188,11 +244,34 @@ export default function InnerCirclePage() {
 
             <div className="mt-16 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
               {benefits.map((b, i) => (
-                <Reveal key={b.t} delay={i * 0.06} className="h-full">
+                <Reveal
+                  key={b.t}
+                  delay={i * 0.06}
+                  className={`h-full ${b.featured ? "md:col-span-2" : ""}`}
+                >
                   <GlowCard className="h-full rounded-[1.75rem]" glow="rgba(219,47,134,0.18)">
-                    <div className="shine-border flex h-full flex-col rounded-[1.75rem] bg-ivory p-8 ring-1 ring-plum/10">
-                      <h3 className="font-display text-2xl text-plumdeep">{b.t}</h3>
-                      <p className="mt-4 text-pretty leading-relaxed text-espresso/75">
+                    <div
+                      className={`shine-border group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] p-8 ring-1 ring-plum/10 ${
+                        b.featured
+                          ? "bg-[linear-gradient(155deg,#fffafd_0%,#fbe3f0_100%)]"
+                          : "bg-ivory"
+                      }`}
+                    >
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-magenta/10 blur-2xl transition-opacity duration-500 group-hover:opacity-80"
+                      />
+                      <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose/20 to-grape/20 text-clay ring-1 ring-plum/10 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
+                        <BenefitIcon name={b.icon} />
+                      </span>
+                      <h3 className="relative mt-6 font-display text-2xl text-plumdeep">
+                        {b.t}
+                      </h3>
+                      <p
+                        className={`relative mt-3 text-pretty leading-relaxed text-espresso/75 ${
+                          b.featured ? "max-w-2xl text-[1.05rem]" : ""
+                        }`}
+                      >
                         {b.d}
                       </p>
                     </div>
@@ -304,9 +383,11 @@ export default function InnerCirclePage() {
 
             <Reveal delay={0.1}>
               <p className="mx-auto mt-12 max-w-2xl text-pretty text-center leading-relaxed text-cream/75">
-                The Polish Girl community is the bridge to the future in person
-                community at L.I.L.A. Safe Haven. Every gathering, every friendship,
-                every act of self care becomes a seed for something so much bigger.
+                The virtual Polish Girl community is the bridge to the future in
+                person community at L.I.L.A. Safe Haven, the place where today&apos;s
+                members become tomorrow&apos;s volunteers, board members, and team.
+                Every gathering, every friendship, every act of self care becomes a
+                seed for something so much bigger.
               </p>
             </Reveal>
           </div>
