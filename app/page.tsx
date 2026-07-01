@@ -1,6 +1,6 @@
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import Nav from "@/components/Nav";
-import CinematicHero from "@/components/CinematicHero";
+import CinematicHeroVideo from "@/components/CinematicHeroVideo";
 import Marquee from "@/components/Marquee";
 import Story from "@/components/Story";
 import Service from "@/components/Service";
@@ -18,7 +18,7 @@ export default function Home() {
       <ScrollProgress />
       <Nav />
       <main>
-        <CinematicHero />
+        <CinematicHeroVideo />
         <Marquee />
         <Story />
         <Service />
