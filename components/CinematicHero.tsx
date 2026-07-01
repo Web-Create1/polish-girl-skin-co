@@ -39,6 +39,12 @@ const glass =
 
 const textShadow = "[text-shadow:0_2px_28px_rgba(20,8,24,0.55)]";
 
+// Color grade lives on the compositor (CSS filter on the canvas/poster) instead
+// of ctx.filter per drawImage — a per-frame canvas filter is the single biggest
+// scroll-jank source on mobile GPUs. Applied once, composited on the GPU.
+const gradeFilter =
+  "[filter:saturate(1.22)_contrast(1.04)_brightness(1.02)_sepia(0.06)]";
+
 const container = {
   hidden: { opacity: 0 },
   visible: {
@@ -101,21 +107,25 @@ export default function CinematicHero() {
     idx = Math.max(0, Math.min(FRAME_COUNT - 1, idx));
 
     // fall back to the nearest already-loaded frame to avoid blanks on fast scroll
-    let img = imagesRef.current[idx];
-    if (!loadedRef.current[idx]) {
-      let lo = idx;
-      while (lo >= 0 && !loadedRef.current[lo]) lo--;
-      if (lo >= 0) img = imagesRef.current[lo];
+    let srcIdx = idx;
+    if (!loadedRef.current[srcIdx]) {
+      while (srcIdx >= 0 && !loadedRef.current[srcIdx]) srcIdx--;
     }
+    if (srcIdx < 0) return;
+
+    // Nothing to do if the same frame would land on screen again — skip the
+    // redundant clear+draw so micro-scrolls don't burn paints on mobile.
+    if (srcIdx === currentFrameRef.current) return;
+
+    const img = imagesRef.current[srcIdx];
     if (!img || !img.naturalWidth) return;
 
     const scale = 1.07 - 0.07 * Math.min(1, Math.max(0, p)); // slow 3D push-in
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // richer, warmer footage: lift saturation + a touch of warmth on the frame itself
-    ctx.filter = "saturate(1.22) contrast(1.04) brightness(1.02) sepia(0.06)";
+    // Color grade is a CSS filter on the canvas element now (composited once),
+    // so the per-frame draw stays cheap — just a plain cover blit.
     drawCover(ctx, img, img.naturalWidth, img.naturalHeight, canvas.width, canvas.height, scale);
-    ctx.filter = "none";
-    currentFrameRef.current = idx;
+    currentFrameRef.current = srcIdx;
   }, []);
 
   const schedule = useCallback(() => {
@@ -125,7 +135,12 @@ export default function CinematicHero() {
   const resize = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Cap the backing store harder on touch devices: filling a 2x full-viewport
+    // canvas every frame is what drops frames on phones. 1.5x still looks crisp.
+    const coarse =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(pointer: coarse)").matches;
+    const dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2);
     canvas.width = Math.round(canvas.clientWidth * dpr);
     canvas.height = Math.round(canvas.clientHeight * dpr);
     currentFrameRef.current = -1;
@@ -220,16 +235,23 @@ export default function CinematicHero() {
 
   // ---------- scroll-scrubbed cinematic hero ----------
   return (
-    <section ref={sectionRef} className="relative h-[320vh] w-full bg-plumdeep">
+    <section ref={sectionRef} className="relative h-[260vh] w-full bg-plumdeep">
       <div className="sticky top-0 flex h-[100svh] w-full items-end overflow-hidden">
         {/* SSR / no-JS / LCP paint — the canvas draws over this once ready */}
         <img
           src="/hero/poster.webp"
           alt="A drop of serum on skin in a golden-hour lavender field"
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
+          className={cn("absolute inset-0 h-full w-full object-cover", gradeFilter)}
         />
-        <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full" />
+        <canvas
+          ref={canvasRef}
+          aria-hidden
+          className={cn(
+            "absolute inset-0 h-full w-full [transform:translateZ(0)] [will-change:transform]",
+            gradeFilter,
+          )}
+        />
 
         {/* color grade: warm golden light up top, violet push through the body */}
         <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(125%_85%_at_50%_8%,rgba(255,181,94,0.45),rgba(255,146,74,0.16)_46%,transparent_72%)]" />
