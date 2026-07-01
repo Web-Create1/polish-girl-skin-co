@@ -111,7 +111,10 @@ export default function CinematicHero() {
 
     const scale = 1.07 - 0.07 * Math.min(1, Math.max(0, p)); // slow 3D push-in
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // richer, warmer footage: lift saturation + a touch of warmth on the frame itself
+    ctx.filter = "saturate(1.22) contrast(1.04) brightness(1.02) sepia(0.06)";
     drawCover(ctx, img, img.naturalWidth, img.naturalHeight, canvas.width, canvas.height, scale);
+    ctx.filter = "none";
     currentFrameRef.current = idx;
   }, []);
 
@@ -191,8 +194,11 @@ export default function CinematicHero() {
         <img
           src="/hero/poster.webp"
           alt="A drop of serum on skin in a golden-hour lavender field"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover [filter:saturate(1.22)_contrast(1.04)_brightness(1.02)_sepia(0.06)]"
         />
+        {/* color grade: warm golden light up top, violet push through the body */}
+        <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(125%_85%_at_50%_8%,rgba(255,181,94,0.45),rgba(255,146,74,0.16)_46%,transparent_72%)]" />
+        <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[linear-gradient(to_bottom,rgba(168,85,224,0.16)_0%,rgba(124,58,180,0.24)_52%,rgba(91,45,84,0.34)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,8,24,0.85)_0%,rgba(20,8,24,0.2)_48%,rgba(20,8,24,0.35)_100%)]" />
         <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pb-24 text-center text-white">
           <p className="eyebrow text-white/75">Your skincare concierge</p>
@@ -224,6 +230,11 @@ export default function CinematicHero() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <canvas ref={canvasRef} aria-hidden className="absolute inset-0 h-full w-full" />
+
+        {/* color grade: warm golden light up top, violet push through the body */}
+        <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(125%_85%_at_50%_8%,rgba(255,181,94,0.45),rgba(255,146,74,0.16)_46%,transparent_72%)]" />
+        <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[linear-gradient(to_bottom,rgba(168,85,224,0.16)_0%,rgba(124,58,180,0.24)_52%,rgba(91,45,84,0.34)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(90%_60%_at_50%_100%,rgba(219,47,134,0.28),transparent_70%)]" />
 
         {/* depth: soft top vignette + strong bottom scrim for legibility */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(125%_85%_at_50%_18%,transparent_38%,rgba(20,8,24,0.4)_100%)]" />
