@@ -1,6 +1,6 @@
 import Reveal from "@/components/Reveal";
 import GlowCard from "@/components/ui/GlowCard";
-import { CALENDLY, EMAIL, IG, IG_HANDLE } from "@/lib/site";
+import { CALENDLY, EMAIL, IG, IG_HANDLE, LINKTREE } from "@/lib/site";
 
 const packages = [
   {
@@ -157,12 +157,14 @@ export default function Connect() {
 
         <Reveal delay={0.1}>
           <p className="mt-10 text-center text-[1.02rem] text-espresso/75">
-            Not sure which to choose?{" "}
+            Not sure where to start?{" "}
             <a
-              href="/intake"
+              href={LINKTREE}
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-medium text-plum underline decoration-clay/50 underline-offset-4 transition-colors hover:text-clay"
             >
-              Start with the skincare intake form
+              Find every link and form on her Linktree
             </a>
           </p>
         </Reveal>
@@ -205,6 +207,14 @@ export default function Connect() {
                 >
                   Book on Calendly
                   <span aria-hidden>→</span>
+                </a>
+                <a
+                  href={LINKTREE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-cream/30 px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
+                >
+                  Visit her Linktree
                 </a>
                 <a
                   href={`mailto:${EMAIL}?subject=Polish%20Girl%20Skin%20Co.%20Hello`}

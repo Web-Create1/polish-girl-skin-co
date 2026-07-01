@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import GlowCard from "@/components/ui/GlowCard";
+import { LINKTREE } from "@/lib/site";
 
 const moments = [
   { t: "Grab your favorite drink", d: "Coffee, tea, or a glass of wine. Come as you are." },
@@ -52,7 +53,9 @@ export default function Sisterhood() {
                 <span aria-hidden>→</span>
               </a>
               <a
-                href="mailto:nmka@uoregon.edu?subject=Joining%20the%20Polish%20Girl%20Sisterhood"
+                href={LINKTREE}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-plum/25 px-8 py-4 text-sm font-medium text-plumdeep transition-colors hover:bg-cream/40"
               >
                 Join the Monthly Community

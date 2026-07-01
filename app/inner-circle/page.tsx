@@ -3,8 +3,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import GlowCard from "@/components/ui/GlowCard";
-import InnerCircleForm from "@/components/InnerCircleForm";
-import { CALENDLY } from "@/lib/site";
+import { CALENDLY, LINKTREE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "The Polish Girl Inner Circle · Polish Girl Skin Co.",
@@ -386,15 +385,41 @@ export default function InnerCirclePage() {
               </Reveal>
               <Reveal delay={0.08}>
                 <p className="mx-auto mt-6 max-w-xl text-pretty text-[1.05rem] leading-relaxed text-espresso/75">
-                  Tell us a little about you and what you are hoping to find. There
-                  are no wrong answers, and no judgment here. Nicole reads every one.
+                  Everything lives on the Polish Girl Linktree: the membership sign
+                  up, the intake form, and every way to reach Nicole. Tap through and
+                  she will personally save you a seat.
                 </p>
               </Reveal>
             </div>
 
-            <div className="mt-14">
-              <InnerCircleForm />
-            </div>
+            <Reveal delay={0.12}>
+              <div className="mx-auto mt-12 flex max-w-xl flex-col items-center gap-4 rounded-[2rem] bg-[linear-gradient(160deg,#5b2d54,#3a1c3a)] p-9 text-center text-cream ring-1 ring-plum shadow-[0_40px_80px_-30px_rgba(94,58,73,0.7)] sm:p-11">
+                <p className="font-display text-2xl text-cream">Ready to join us?</p>
+                <p className="max-w-sm text-pretty leading-relaxed text-cream/75">
+                  Find the Inner Circle membership and every Polish Girl form in one
+                  place.
+                </p>
+                <div className="mt-2 flex w-full flex-col justify-center gap-3 sm:flex-row">
+                  <a
+                    href={LINKTREE}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-cream px-8 py-4 text-sm font-medium text-plum transition-colors hover:bg-goldlight"
+                  >
+                    Join on Linktree
+                    <span aria-hidden>→</span>
+                  </a>
+                  <a
+                    href={CALENDLY}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-cream/30 px-8 py-4 text-sm font-medium text-cream transition-colors hover:bg-cream/10"
+                  >
+                    Book a consult first
+                  </a>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
       </main>
