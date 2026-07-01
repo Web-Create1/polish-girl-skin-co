@@ -14,23 +14,29 @@ import { CALENDLY } from "@/lib/site";
 /**
  * CinematicHero
  * -------------
- * A scroll-scrubbed image-sequence hero. 120 WebP frames (720x1280) rendered to
- * a <canvas> and advanced by scroll position, so the golden-hour serum ritual
- * plays forward as the reader scrolls. Canvas (not <video>) because iOS Safari
- * makes scroll-driven video.currentTime janky; a frame sequence is buttery on
- * mobile.
+ * A scroll-scrubbed image-sequence hero. As the reader scrolls the top of the
+ * page, 60 WebP frames (900x1600) are drawn to a <canvas> and advanced by scroll
+ * position, so the golden-hour lavender-field-to-serum-on-the-wrist ritual plays
+ * forward. Canvas (not <video>) because iOS Safari makes scroll-driven
+ * video.currentTime janky; a pre-decoded frame sequence scrubs buttery-smooth.
  *
- * Performance / correctness notes:
- *  - Frame draws run off refs + a single rAF (never setState per scroll frame),
- *    which keeps Lenis smooth scrolling from desyncing.
- *  - Copy fades in once on mount and stays put; scroll only drives the video,
- *    the parallax push-in, the legibility scrim, and the scroll cue.
- *  - A real poster.webp sits under the canvas as the SSR / no-JS / LCP paint;
- *    the canvas simply draws over it once frames stream in.
- *  - prefers-reduced-motion: no canvas, no scrub, just the poster + copy.
+ * Tuned for quality AND performance on mobile:
+ *  - The colour grade, generator-watermark removal and edge crop are BAKED INTO
+ *    the frames. So there is no per-frame ctx.filter, no CSS filter on the moving
+ *    canvas, and no stacked mix-blend colour layers over it — those forced a
+ *    full-viewport GPU re-composite on every scroll tick and were the old jank.
+ *    Only plain (non-blend) legibility scrims remain.
+ *  - 60 frames at 900x1600 instead of 120 at 720x1280: less decoded-image memory
+ *    (~350 MB vs ~440 MB, so no decode thrash on fast scroll) AND higher
+ *    resolution, so the canvas stays crisp at a 2x DPR backing store instead of
+ *    the previous soft 1.5x cap.
+ *  - Draws run off refs + a single rAF (never setState per scroll frame), with an
+ *    early-out when the resolved frame index is unchanged, so Lenis stays smooth.
+ *  - poster.webp (the graded first frame) is the SSR / no-JS / LCP paint under
+ *    the canvas; prefers-reduced-motion gets just the poster + copy.
  */
 
-const FRAME_COUNT = 120;
+const FRAME_COUNT = 60;
 const frameSrc = (i: number) =>
   `/hero-frames/frame_${String(i + 1).padStart(3, "0")}.webp`;
 
@@ -38,12 +44,6 @@ const glass =
   "inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-8 py-4 text-sm font-medium tracking-wide text-white backdrop-blur-sm transition-colors hover:bg-white/20";
 
 const textShadow = "[text-shadow:0_2px_28px_rgba(20,8,24,0.55)]";
-
-// Color grade lives on the compositor (CSS filter on the canvas/poster) instead
-// of ctx.filter per drawImage — a per-frame canvas filter is the single biggest
-// scroll-jank source on mobile GPUs. Applied once, composited on the GPU.
-const gradeFilter =
-  "[filter:saturate(1.22)_contrast(1.04)_brightness(1.02)_sepia(0.06)]";
 
 const container = {
   hidden: { opacity: 0 },
@@ -120,10 +120,10 @@ export default function CinematicHero() {
     const img = imagesRef.current[srcIdx];
     if (!img || !img.naturalWidth) return;
 
-    const scale = 1.07 - 0.07 * Math.min(1, Math.max(0, p)); // slow 3D push-in
+    const scale = 1.07 - 0.07 * Math.min(1, Math.max(0, p)); // slow push-in
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Color grade is a CSS filter on the canvas element now (composited once),
-    // so the per-frame draw stays cheap — just a plain cover blit.
+    // Grade is baked into the frames, so the per-frame draw is just a plain
+    // cover blit — no filter, no blend, nothing extra per scroll tick.
     drawCover(ctx, img, img.naturalWidth, img.naturalHeight, canvas.width, canvas.height, scale);
     currentFrameRef.current = srcIdx;
   }, []);
@@ -135,12 +135,10 @@ export default function CinematicHero() {
   const resize = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    // Cap the backing store harder on touch devices: filling a 2x full-viewport
-    // canvas every frame is what drops frames on phones. 1.5x still looks crisp.
-    const coarse =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(pointer: coarse)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2);
+    // 900px-wide frames feed a 2x DPR backing store nearly 1:1, so the scrub is
+    // crisp without over-filling the canvas. With the grade baked into the frames
+    // there is no per-frame filter cost forcing us down to the old 1.5x cap.
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(canvas.clientWidth * dpr);
     canvas.height = Math.round(canvas.clientHeight * dpr);
     currentFrameRef.current = -1;
@@ -202,19 +200,16 @@ export default function CinematicHero() {
     [],
   );
 
-  // ---------- reduced motion: static poster hero ----------
+  // ---------- reduced motion: static poster hero (grade already baked in) ----------
   if (reduce) {
     return (
       <section className="relative flex h-[100svh] w-full items-end overflow-hidden bg-plumdeep">
         <img
           src="/hero/poster.webp"
-          alt="A drop of serum on skin in a golden-hour lavender field"
-          className="absolute inset-0 h-full w-full object-cover [filter:saturate(1.22)_contrast(1.04)_brightness(1.02)_sepia(0.06)]"
+          alt="A woman walking through a golden-hour lavender field"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        {/* color grade: warm golden light up top, violet push through the body */}
-        <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(125%_85%_at_50%_8%,rgba(255,181,94,0.45),rgba(255,146,74,0.16)_46%,transparent_72%)]" />
-        <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[linear-gradient(to_bottom,rgba(168,85,224,0.16)_0%,rgba(124,58,180,0.24)_52%,rgba(91,45,84,0.34)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,8,24,0.85)_0%,rgba(20,8,24,0.2)_48%,rgba(20,8,24,0.35)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(20,8,24,0.85)_0%,rgba(20,8,24,0.2)_48%,rgba(20,8,24,0.35)_100%)]" />
         <div className="relative z-10 mx-auto w-full max-w-3xl px-6 pb-24 text-center text-white">
           <p className="eyebrow text-white/75">Your skincare concierge</p>
           <h1 className={cn("mt-4 text-balance text-5xl leading-[1.02] sm:text-6xl", textShadow)}>
@@ -240,25 +235,18 @@ export default function CinematicHero() {
         {/* SSR / no-JS / LCP paint — the canvas draws over this once ready */}
         <img
           src="/hero/poster.webp"
-          alt="A drop of serum on skin in a golden-hour lavender field"
+          alt="A woman walking through a golden-hour lavender field"
           fetchPriority="high"
-          className={cn("absolute inset-0 h-full w-full object-cover", gradeFilter)}
+          className="absolute inset-0 h-full w-full object-cover"
         />
         <canvas
           ref={canvasRef}
           aria-hidden
-          className={cn(
-            "absolute inset-0 h-full w-full [transform:translateZ(0)] [will-change:transform]",
-            gradeFilter,
-          )}
+          className="absolute inset-0 h-full w-full [transform:translateZ(0)] [will-change:transform]"
         />
 
-        {/* color grade: warm golden light up top, violet push through the body */}
-        <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(125%_85%_at_50%_8%,rgba(255,181,94,0.45),rgba(255,146,74,0.16)_46%,transparent_72%)]" />
-        <div className="pointer-events-none absolute inset-0 mix-blend-overlay bg-[linear-gradient(to_bottom,rgba(168,85,224,0.16)_0%,rgba(124,58,180,0.24)_52%,rgba(91,45,84,0.34)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(90%_60%_at_50%_100%,rgba(219,47,134,0.28),transparent_70%)]" />
-
-        {/* depth: soft top vignette + strong bottom scrim for legibility */}
+        {/* depth + legibility — all PLAIN gradients (no mix-blend), so the canvas
+            never has to re-composite a blended stack while it scrubs */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(125%_85%_at_50%_18%,transparent_38%,rgba(20,8,24,0.4)_100%)]" />
         <motion.div
           aria-hidden
