@@ -1,4 +1,4 @@
-import { CALENDLY, EMAIL, IG, IG_HANDLE } from "@/lib/site";
+import { CALENDLY, EMAIL, IG, IG_HANDLE, LINKTREE } from "@/lib/site";
 
 const explore = [
   { href: "/#story", label: "Our Story" },
@@ -57,6 +57,16 @@ export default function Footer() {
                   className="text-cream/70 transition-colors hover:text-cream"
                 >
                   Book a consultation
+                </a>
+              </li>
+              <li>
+                <a
+                  href={LINKTREE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cream/70 transition-colors hover:text-cream"
+                >
+                  All her links
                 </a>
               </li>
               <li>
