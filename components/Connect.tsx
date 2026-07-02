@@ -6,10 +6,10 @@ const packages = [
   {
     name: "The Polish Girl Starter",
     tagline: "For the skincare minimalist ready to glow",
-    price: "$99 or $149",
-    cadence: "one time · 30 or 45 min",
+    price: "$149",
+    cadence: "one time · 45 min",
     features: [
-      "30 or 45 min 1:1 session with Nicole",
+      "45 min 1:1 Zoom session with Nicole",
       "Full review of your current products: keep, toss, or swap",
       "Your personalized clean slate product edit",
     ],
@@ -19,7 +19,7 @@ const packages = [
   {
     name: "The Polish Girl Ritual",
     tagline: "For the skincare enthusiast ready to level up",
-    price: "$250 or $300",
+    price: "$300",
     cadence: "one time · 60 min",
     features: [
       "60 min 1:1 Zoom session with Nicole",
@@ -33,7 +33,7 @@ const packages = [
   {
     name: "The Polish Girl Inner Circle",
     tagline: "For the woman ready to fully invest in her skin and herself",
-    price: "$500 or $600",
+    price: "$600",
     cadence: "per month membership",
     features: [
       "2 x 60 min Zoom sessions per month with Nicole",

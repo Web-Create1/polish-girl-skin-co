@@ -78,7 +78,7 @@ const vignettes = [
 const membership = {
   name: "The Polish Girl Inner Circle",
   tagline: "For the woman ready to fully invest in her skin and herself",
-  price: "$500 or $600",
+  price: "$600",
   cadence: "per month membership",
   features: [
     "2 x 60 min Zoom sessions per month with Nicole",
