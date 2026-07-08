@@ -121,6 +121,11 @@ export default function CinematicHero() {
     if (!img || !img.naturalWidth) return;
 
     const scale = 1.07 - 0.07 * Math.min(1, Math.max(0, p)); // slow push-in
+    // High-quality resampling so the frames stay crisp as the canvas scales them
+    // to fill the viewport (helps the mobile downscale and the wide-desktop
+    // upscale alike). Context state resets on backing-store resize, so set here.
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // Grade is baked into the frames, so the per-frame draw is just a plain
     // cover blit — no filter, no blend, nothing extra per scroll tick.

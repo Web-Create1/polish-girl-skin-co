@@ -1,6 +1,6 @@
 import Reveal from "@/components/Reveal";
 import GlowCard from "@/components/ui/GlowCard";
-import { CALENDLY, EMAIL, IG, IG_HANDLE, LINKTREE } from "@/lib/site";
+import { CALENDLY, CHECKOUT, EMAIL, IG, IG_HANDLE, LINKTREE } from "@/lib/site";
 
 const packages = [
   {
@@ -15,6 +15,7 @@ const packages = [
     ],
     featured: false,
     cta: "Book this package",
+    checkout: CHECKOUT.starter,
   },
   {
     name: "The Polish Girl Ritual",
@@ -29,6 +30,7 @@ const packages = [
     ],
     featured: true,
     cta: "Book this package",
+    checkout: CHECKOUT.ritual,
   },
   {
     name: "The Polish Girl Inner Circle",
@@ -46,6 +48,7 @@ const packages = [
     ],
     featured: false,
     cta: "Join the Inner Circle",
+    checkout: CHECKOUT.innerCircle,
   },
 ];
 
@@ -137,7 +140,7 @@ export default function Connect() {
                     </p>
                   </div>
                   <a
-                    href={CALENDLY}
+                    href={p.checkout}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium transition-colors ${

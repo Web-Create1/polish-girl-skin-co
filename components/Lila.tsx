@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import Sparkles from "@/components/ui/Sparkles";
+import { EMAIL } from "@/lib/site";
 
 export default function Lila() {
   return (
@@ -42,7 +43,7 @@ export default function Lila() {
 
         <Reveal delay={0.24}>
           <a
-            href="mailto:nmka@uoregon.edu?subject=L.I.L.A.%20Safe%20Haven%3A%20Getting%20Involved"
+            href={`mailto:${EMAIL}?subject=L.I.L.A.%20Safe%20Haven%3A%20Getting%20Involved`}
             className="mt-12 inline-flex items-center gap-2 rounded-full border border-gold/50 px-8 py-4 text-sm font-medium text-goldlight transition-colors hover:bg-gold/10"
           >
             Learn how Polish Girl funds L.I.L.A.

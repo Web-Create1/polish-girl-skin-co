@@ -3,7 +3,7 @@
  * Update these once and every component picks up the change.
  */
 
-export const EMAIL = "nmka@uoregon.edu";
+export const EMAIL = "polishgirlskinco@gmail.com";
 
 /** Calendly scheduling link — used by every "Book" / consultation CTA. */
 export const CALENDLY = "https://calendly.com/polishgirlskinco";
@@ -14,6 +14,21 @@ export const CALENDLY = "https://calendly.com/polishgirlskinco";
  * routes here instead of an on-site form.
  */
 export const LINKTREE = "https://linktr.ee/PolishGirlSkinCo";
+
+/**
+ * Per-package checkout links.
+ *
+ * Nicole sets up her own payment processor (a Stripe Payment Link, Square
+ * checkout, PayPal, etc.) and pastes each package's URL here. Every package
+ * button on the site reads from this object, so turning on live payments later
+ * is a one-file change. Until she provides them, each falls back to Calendly so
+ * today's "book a consultation first" flow keeps working with no dead buttons.
+ */
+export const CHECKOUT = {
+  starter: CALENDLY,
+  ritual: CALENDLY,
+  innerCircle: CALENDLY,
+} as const;
 
 /** Instagram profile. */
 export const IG = "https://www.instagram.com/polishgirlskincompany/";
