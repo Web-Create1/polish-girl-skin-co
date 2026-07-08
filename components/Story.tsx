@@ -33,7 +33,7 @@ export default function Story() {
             <GlowCard tilt={9} glow="rgba(255,255,255,0.28)" className="rounded-[2.25rem]">
               <div className="shine-border relative aspect-[4/5] overflow-hidden rounded-[2.25rem] bg-[linear-gradient(150deg,#f9d4e8_0%,#db2f86_46%,#3a1c3a_100%)] shadow-[0_40px_90px_-30px_rgba(42,20,48,0.6)] ring-1 ring-plum/10">
                 <img
-                  src="/nicole.jpg"
+                  src="/img/founder.webp"
                   alt="Nicole Kaminski, founder of Polish Girl Skin Co."
                   className="absolute inset-0 h-full w-full object-cover object-top"
                 />
