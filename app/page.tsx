@@ -11,7 +11,7 @@ import Future from "@/components/Future";
 import Testimonials from "@/components/Testimonials";
 import Connect from "@/components/Connect";
 import Footer from "@/components/Footer";
-import { IG } from "@/lib/site";
+import { EMAIL, IG } from "@/lib/site";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -22,6 +22,7 @@ const jsonLd = {
   url: "https://polish-girl-skin-co.vercel.app",
   image: "https://polish-girl-skin-co.vercel.app/opengraph-image.png",
   logo: "https://polish-girl-skin-co.vercel.app/logo.png",
+  email: EMAIL,
   priceRange: "$149 - $600",
   areaServed: "US",
   sameAs: [IG],

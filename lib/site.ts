@@ -3,7 +3,7 @@
  * Update these once and every component picks up the change.
  */
 
-export const EMAIL = "nmka@uoregon.edu";
+export const EMAIL = "polishgirlskinco@gmail.com";
 
 /** Calendly scheduling link — used by every "Book" / consultation CTA. */
 export const CALENDLY = "https://calendly.com/polishgirlskinco";
