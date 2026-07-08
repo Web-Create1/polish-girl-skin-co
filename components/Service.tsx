@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import GlowCard from "@/components/ui/GlowCard";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 
 type Pillar = { title: string; body: string; icon: React.ReactNode };
 
@@ -45,20 +46,31 @@ export default function Service() {
   return (
     <section id="service" className="relative overflow-hidden bg-sand py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-3xl">
-          <Reveal>
-            <p className="eyebrow text-clay">What We Do</p>
-            <h2 className="mt-5 text-balance text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.08] text-plumdeep">
-              A personal concierge for your skin.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mt-6 text-pretty text-[1.05rem] leading-relaxed text-espresso/80">
-              Polish Girl is a personalized skincare concierge service. Nicole
-              personally researches and curates product recommendations matched to
-              your unique skin concerns, lifestyle, and budget, guided by the
-              thoughtful skincare questionnaires she designed just for you.
-            </p>
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="max-w-xl">
+            <Reveal>
+              <p className="eyebrow text-clay">What We Do</p>
+              <h2 className="mt-5 text-balance text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.08] text-plumdeep">
+                A personal concierge for your skin.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-6 text-pretty text-[1.05rem] leading-relaxed text-espresso/80">
+                Polish Girl is a personalized skincare concierge service. Nicole
+                personally researches and curates product recommendations matched to
+                your unique skin concerns, lifestyle, and budget, guided by the
+                thoughtful skincare questionnaires she designed just for you.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.12}>
+            <ParallaxImage
+              src="/img/ritual-still.webp"
+              alt="A soft skincare still life: a rolled towel, an unlabeled pump bottle, a lit candle, and fresh pink tulips"
+              chip="Curated for you"
+              caption="Your personalized product edit"
+              aspect="aspect-[5/4]"
+            />
           </Reveal>
         </div>
 

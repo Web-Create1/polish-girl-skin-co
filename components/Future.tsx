@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import GlowCard from "@/components/ui/GlowCard";
+import ParallaxImage from "@/components/ui/ParallaxImage";
 
 const features = [
   { t: "All natural & organic", d: "Clean Polish ingredients, chosen to love your skin barrier." },
@@ -19,20 +20,31 @@ export default function Future() {
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(120%_120%_at_85%_0%,#efe6f6_0%,#fbf2f7_55%)] py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <p className="eyebrow text-sage">What’s Growing Next</p>
-            <h2 className="mt-5 text-balance text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.08] text-plumdeep">
-              A skincare line, grown with love.
-            </h2>
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <Reveal delay={0.12} className="order-2 lg:order-1">
+            <ParallaxImage
+              src="/img/botanical.webp"
+              alt="Fresh eucalyptus branches in a clear glass vase against a soft white wall"
+              chip="All natural"
+              glow="rgba(164,85,194,0.22)"
+              aspect="aspect-[5/4]"
+            />
           </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mt-6 text-pretty text-[1.05rem] leading-relaxed text-espresso/80">
-              As Polish Girl grows, Nicole plans to launch a skincare line featuring
-              all natural, organic Polish ingredients grown on L.I.L.A.’s land,
-              bottled by survivors, and shipped farm fresh to your door.
-            </p>
-          </Reveal>
+          <div className="order-1 max-w-xl lg:order-2">
+            <Reveal>
+              <p className="eyebrow text-sage">What’s Growing Next</p>
+              <h2 className="mt-5 text-balance text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.08] text-plumdeep">
+                A skincare line, grown with love.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-6 text-pretty text-[1.05rem] leading-relaxed text-espresso/80">
+                As Polish Girl grows, Nicole plans to launch a skincare line featuring
+                all natural, organic Polish ingredients grown on L.I.L.A.’s land,
+                bottled by survivors, and shipped farm fresh to your door.
+              </p>
+            </Reveal>
+          </div>
         </div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

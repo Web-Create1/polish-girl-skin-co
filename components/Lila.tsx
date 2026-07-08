@@ -8,6 +8,16 @@ export default function Lila() {
       id="lila"
       className="relative overflow-hidden bg-plumdeep py-32 text-cream sm:py-40"
     >
+      {/* the land itself — a golden-hour meadow, drifting slowly beneath the dark
+          so L.I.L.A. Safe Haven reads as a real place, not just a promise */}
+      <img
+        src="/img/haven-meadow.webp"
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full animate-kenburns object-cover object-center opacity-30"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(42,20,48,0.86)_0%,rgba(42,20,48,0.7)_48%,rgba(42,20,48,0.92)_100%)]" />
+
       {/* sanctuary glow + drifting light */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[44rem] w-[44rem] -translate-x-1/2 -translate-y-1/2 animate-glow rounded-full bg-[radial-gradient(circle,rgba(164,85,194,0.4)_0%,rgba(219,47,134,0.2)_45%,transparent_70%)]" />
       <Sparkles
