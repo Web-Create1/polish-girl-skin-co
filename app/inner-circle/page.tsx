@@ -113,9 +113,8 @@ export default function InnerCirclePage() {
             <Reveal delay={0.08}>
               <p className="mx-auto mt-6 max-w-xl text-pretty text-[1.08rem] leading-relaxed text-plumdeep/80">
                 The Inner Circle gives you the right products to transform your
-                skin and the community you have been missing, so you can heal what
-                life has left lonely. Friendship, laughter, support, and a place
-                where you finally belong.
+                skin and the community you have been missing. Friendship, laughter,
+                support, and a place where you finally belong.
               </p>
             </Reveal>
             <Reveal delay={0.14}>
